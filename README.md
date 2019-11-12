@@ -27,3 +27,12 @@ Create a topic
 pipenv run python examples/create_topic.py mytopic
 ```
 
+Kafka shell scripts
+```
+\\ Create a topic
+docker exec -it kafka /opt/kafka/bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test
+
+\\ List topics
+docker exec -it kafka /opt/kafka/bin/kafka-topics.sh --list --zookeeper zookeeper:2181
+```
+
