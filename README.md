@@ -38,6 +38,11 @@ List topics
 docker exec -it kafka /opt/kafka/bin/kafka-topics.sh --list --zookeeper zookeeper:2181
 ```
 
+Delete a topic
+```
+docker exec -it kafka /opt/kafka/bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic weather
+```
+
 Create a Producer
 ```
 docker exec -it kafka /opt/kafka/bin/kafka-console-producer.sh --broker-list kafka:9092 --topic=weather
