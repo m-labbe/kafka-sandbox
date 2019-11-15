@@ -26,9 +26,9 @@ producer = Producer({"bootstrap.servers": "localhost:9092"})
 
 def acked(err, msg):
     if err is not None:
-        print(f"Failed to deliver message: {0}: {1}")
+        print(f"Failed to deliver message: {msg.value()}: {err.str()}")
     else:
-        print(f"Message produced: {0}")
+        print(f"Message produced: {msg.value()}")
 
 def generate_weather_strings(current_generation: int, current_datetime: datetime) -> Tuple[str, str]:
     for index, (location, temps) in enumerate(location_mapped_to_temp_in_ranges.items()):
@@ -49,10 +49,9 @@ try:
     current_datetime = starting_datetime
     while True:
         for location, weather_string in generate_weather_strings(current_generation, current_datetime):
-            print(f"{location}: {weather_string}")
             # produce message to topic asynchronously, providing the acked callback
             # https://docs.confluent.io/current/clients/confluent-kafka-python/#confluent_kafka.Producer.produce
-            producer.produce(topic, value=weather_string, callback=acked)
+            producer.produce(topic, value=f"{location}: {weather_string}", callback=acked)
             producer.poll(0.5)
             current_generation = current_generation + 1
             current_datetime = current_datetime + timedelta(hours=1)
