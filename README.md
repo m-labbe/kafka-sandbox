@@ -46,7 +46,7 @@ docker exec -it kafka /opt/kafka/bin/kafka-topics.sh --zookeeper localhost:2181 
 
 Create a Producer
 ```
-docker exec -it kafka /opt/kafka/bin/kafka-console-producer.sh --broker-list kafka:9092 --topic=mytopic
+docker exec -it kafka /opt/kafka/bin/kafka-console-producer.sh --broker-list kafka:9092 --topic mytopic
 ```
 
 Create a Consumer
@@ -67,6 +67,7 @@ pipenv run python examples/list_topics.py
 ```
 
 Create a Producer and generate messages
+
 ```
 pipenv run python examples/producer_example.py
 ```

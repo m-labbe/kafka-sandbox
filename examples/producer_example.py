@@ -44,7 +44,7 @@ def generate_weather_strings(current_generation: int, current_datetime: datetime
 
 try:
     print(">>> Press [Ctrl-C] to stop the producer")
-    topic = "weather"
+    topic = "mytopic"
     current_generation = 0
     current_datetime = starting_datetime
     while True:

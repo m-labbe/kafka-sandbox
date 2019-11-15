@@ -10,8 +10,10 @@ settings = {
 }
 
 # Create Kafka Consumer
+# https://docs.confluent.io/current/clients/confluent-kafka-python/index.html#consumer
+print(">>> Press [Ctrl-C] to stop the consumer")
 consumer = Consumer(settings)
-consumer.subscribe(["weather"])
+consumer.subscribe(["mytopic"])
 
 try:
     while True:
